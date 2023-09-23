@@ -1,7 +1,6 @@
-package com.aliucord.plugins.userbg
+package com.aliucord.plugins.userpfp
 
 import android.content.Context
-import com.aliucord.Utils.createCheckedSetting
 import com.aliucord.api.SettingsAPI
 import com.aliucord.views.TextInput
 import android.text.Editable
@@ -11,7 +10,7 @@ import com.discord.views.CheckedSetting
 import com.aliucord.PluginManager
 import com.aliucord.Utils
 import com.aliucord.fragments.SettingsPage
-import com.aliucord.plugins.userbg.model.APFP
+import com.aliucord.plugins.userpfp.model.APFP
 import com.aliucord.views.Button
 import com.discord.utilities.view.text.TextWatcher
 import java.lang.Exception
@@ -19,11 +18,11 @@ import java.lang.Exception
 class PluginSettings(private val settings: SettingsAPI) : SettingsPage() {
     override fun onViewBound(view: View) {
         super.onViewBound(view)
-        setActionBarTitle("UserBG")
+        setActionBarTitle("UserPFP")
         val textInput = TextInput(view.context)
-        //textInput.hint = "Refresh UserBG database time (minutes)"
+        //textInput.hint = "Refresh UserPFP database time (minutes)"
         textInput.editText!!.setText(
-            settings.getLong("cacheTime", UserBG.REFRESH_CACHE_TIME).toString()
+            settings.getLong("cacheTime", UserPFP.REFRESH_CACHE_TIME).toString()
         )
         textInput.editText!!.inputType = InputType.TYPE_CLASS_NUMBER
         textInput.editText!!.addTextChangedListener(object : TextWatcher() {
@@ -34,7 +33,7 @@ class PluginSettings(private val settings: SettingsAPI) : SettingsPage() {
                         java.lang.Long.valueOf(editable.toString())
                     )
                 } catch (e: Exception) {
-                    settings.setLong("cacheTime", UserBG.REFRESH_CACHE_TIME)
+                    settings.setLong("cacheTime", UserPFP.REFRESH_CACHE_TIME)
                 }
             }
         })
@@ -43,11 +42,10 @@ class PluginSettings(private val settings: SettingsAPI) : SettingsPage() {
         refreshCache.setOnClickListener { button: View? ->
             Utils.threadPool.execute {
                 Utils.showToast("Downloading databases...")
-                context?.let { UserBG.USRBG.getCacheFile(it) }?.let { UserBG.USRBG.downloadDB(it) }
-                context?.let { UserBG.APFP.getCacheFile(it) }?.let { UserBG.APFP.downloadDB(it) }
+                context?.let { UserPFP.APFP.getCacheFile(it) }?.let { UserPFP.APFP.downloadDB(it) }
                 Utils.showToast("Downloaded databases.")
 
-                with(UserBG.APFP) {
+                with(UserPFP.APFP) {
                     Utils.showToast("Downloading databases...")
 
                     Utils.showToast("Downloaded databases.")
@@ -55,38 +53,7 @@ class PluginSettings(private val settings: SettingsAPI) : SettingsPage() {
             }
         }
         addView(textInput)
-        addView(
-            createCheckedSetting(
-                view.context,
-                "Prioritize Nitro banner over USRBG banner",
-                "nitroBanner",
-                true
-            )
-        )
-        addView(
-            createCheckedSetting(
-                view.context,
-                "Use downscaleToFrame and partial cache (experimental)",
-                "downscaleToFrame",
-                false
-            )
-        )
         addView(refreshCache)
     }
 
-    private fun createCheckedSetting(
-        ctx: Context,
-        title: String,
-        setting: String,
-        checked: Boolean
-    ): CheckedSetting {
-        val checkedSetting = createCheckedSetting(ctx, CheckedSetting.ViewType.SWITCH, title, null)
-        checkedSetting.isChecked = settings.getBool(setting, checked)
-        checkedSetting.setOnCheckedListener { check: Boolean? ->
-            settings.setBool(setting, check!!)
-            PluginManager.stopPlugin("RainbowCord")
-            PluginManager.startPlugin("RainbowCord")
-        }
-        return checkedSetting
-    }
 }
