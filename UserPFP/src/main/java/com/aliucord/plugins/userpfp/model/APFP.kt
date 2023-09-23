@@ -42,10 +42,11 @@ object APFP : AbstractDatabase() {
                     it.result = mapCache[id]?.let { it1 ->  if ((it.args[3] as Boolean)) it1.animated else it1.static
                 } else {
                     val matcher = Pattern.compile(
-                        id.toString() + regex
+                        id.toString() + regex,
+                        Pattern.DOTALL
                     ).matcher(data)
                     if (matcher.find()) {
-                        mapCache[id] = PFP(matcher.group(1), matcher.group(2)).also {
+                        mapCache[id] = PFP(matcher.group(2), matcher.group(1)).also {
                                 it1 ->  if ((it.args[3] as Boolean)) it.result = it1.animated else it.result = it1.static
                         }
                     }
