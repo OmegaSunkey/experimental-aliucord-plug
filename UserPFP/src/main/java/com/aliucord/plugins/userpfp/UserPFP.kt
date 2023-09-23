@@ -11,7 +11,7 @@ import kotlin.Throws
 @AliucordPlugin
 class UserPFP : Plugin() {
     init {
-        APFP = com.aliucord.plugins.userbg.model.APFP
+        APFP = com.aliucord.plugins.userpfp.model.APFP
     }
     @Throws(NoSuchMethodException::class)
     override fun start(ctx: Context) {
