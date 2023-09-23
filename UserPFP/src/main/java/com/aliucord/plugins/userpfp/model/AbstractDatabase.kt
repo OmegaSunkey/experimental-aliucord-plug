@@ -1,11 +1,11 @@
-package com.aliucord.plugins.userbg.model
+package com.aliucord.plugins.userpfp.model
 
 import android.content.Context
 import com.aliucord.Http
 import com.aliucord.Utils
 import com.aliucord.api.PatcherAPI
 import com.aliucord.api.SettingsAPI
-import com.aliucord.plugins.userbg.UserBG
+import com.aliucord.plugins.userpfp.UserPFP
 import com.aliucord.utils.IOUtils
 import java.io.File
 import java.io.FileInputStream
@@ -28,7 +28,7 @@ abstract class AbstractDatabase() {
                 it.createNewFile()
 
                 data = loadFromCache(it)
-                UserBG.log.debug("Loaded $name database.")
+                UserPFP.log.debug("Loaded $name database.")
 
                 if (ifRecache(it.lastModified(), settings) || data.isEmpty() || data == null) {
                     downloadDB(it)
@@ -38,12 +38,12 @@ abstract class AbstractDatabase() {
     }
 
     fun downloadDB(cachedFile: File) {
-        UserBG.log.debug("Downloading $name database...")
+        UserPFP.log.debug("Downloading $name database...")
         Http.simpleDownload(url, cachedFile)
-        UserBG.log.debug("Downloaded $name database.")
+        UserPFP.log.debug("Downloaded $name database.")
 
         data = loadFromCache(cachedFile)
-        UserBG.log.debug("Updated $name database.")
+        UserPFP.log.debug("Updated $name database.")
     }
 
     private fun loadFromCache(it: File): String {
@@ -57,7 +57,7 @@ abstract class AbstractDatabase() {
     private fun ifRecache(lastModified: Long, settings: SettingsAPI): Boolean {
         return System.currentTimeMillis() - lastModified > settings.getLong(
             "cacheTime",
-            UserBG.REFRESH_CACHE_TIME
+            UserPFP.REFRESH_CACHE_TIME
         ) * 60 * 1000 // 6 hours
     }
 

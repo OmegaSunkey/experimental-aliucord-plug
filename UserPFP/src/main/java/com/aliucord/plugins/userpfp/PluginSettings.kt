@@ -6,7 +6,6 @@ import com.aliucord.views.TextInput
 import android.text.Editable
 import android.text.InputType
 import android.view.View
-import com.discord.views.CheckedSetting
 import com.aliucord.PluginManager
 import com.aliucord.Utils
 import com.aliucord.fragments.SettingsPage
