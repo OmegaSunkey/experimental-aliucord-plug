@@ -1,16 +1,1 @@
-{
-    "default": {
-        "minimumDiscordVersion": 80202,
-        "version": "1.0.0",
-        "build": "https://raw.githubusercontent.com/terabyte25/plugins/builds/%s.zip"
-    },
-    "NoReactions": {
-        "version": "1.0.0"
-    },
-    "VCID": {
-        "version": "1.0.0"
-    },
-    "VideoEmbedPatch": {
-        "version": "1.0.0"
-    }
-}
+{"UserPFP":{"minimumDiscordVersion":126021,"version":"1.2.3","build":"https://raw.githubusercontent.com/terabyte25/plugins/builds/%s.zip","changelog":"* Update to new URL for USRBG"}}
