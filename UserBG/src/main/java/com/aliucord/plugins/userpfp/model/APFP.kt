@@ -1,4 +1,4 @@
-package com.aliucord.plugins.userbg.model
+package com.aliucord.plugins.userpfp.model
 
 import android.graphics.Color
 import android.graphics.drawable.ShapeDrawable
@@ -10,13 +10,13 @@ import com.aliucord.patcher.Hook
 import com.discord.utilities.icon.IconUtils
 import com.facebook.drawee.view.SimpleDraweeView
 import java.util.regex.Pattern
-import c.f.g.e.s
+import b.f.g.e.s
 import com.discord.utilities.images.MGImages
 
 
 object APFP : AbstractDatabase() {
-    override val regex: String = ".*?\\('(.*?)'.*?\\('(.*?)'"
-    override val url: String = "https://raw.githubusercontent.com/rmkx/APFP/main/src/db.css"
+    override val regex: String = ".*(https:\\/\\/.*?\\.gif).*(https:\\/\\/.*?\\.png|jpg)"
+    override val url: String = "https://raw.githubusercontent.com/baptisteges/USERPFP/main/src/dist/source.css"
 
     override var data: String = ""
 

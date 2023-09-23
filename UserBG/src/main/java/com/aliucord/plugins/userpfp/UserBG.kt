@@ -1,23 +1,20 @@
-package com.aliucord.plugins.userbg
+package com.aliucord.plugins.userpfp
 
 import android.content.Context
 import com.aliucord.Logger
 import com.aliucord.annotations.AliucordPlugin
 import com.aliucord.entities.Plugin
-import com.aliucord.plugins.userbg.model.APFP
-import com.aliucord.plugins.userbg.model.AbstractDatabase
-import com.aliucord.plugins.userbg.model.USRBG
+import com.aliucord.plugins.userpfp.model.APFP
+import com.aliucord.plugins.userpfp.model.AbstractDatabase
 import kotlin.Throws
 
 @AliucordPlugin
-class UserBG : Plugin() {
+class UserPFP : Plugin() {
     init {
-        USRBG = com.aliucord.plugins.userbg.model.USRBG
         APFP = com.aliucord.plugins.userbg.model.APFP
     }
     @Throws(NoSuchMethodException::class)
     override fun start(ctx: Context) {
-        USRBG.init(ctx, settings, patcher)
         APFP.init(ctx, settings, patcher)
     }
 
@@ -26,10 +23,9 @@ class UserBG : Plugin() {
     }
 
     companion object {
-        lateinit var USRBG: USRBG
         lateinit var APFP: APFP
 
-        val log: Logger = Logger("UserBG")
+        val log: Logger = Logger("UserPFP")
         const val REFRESH_CACHE_TIME = (6 * 60).toLong()
     }
 
