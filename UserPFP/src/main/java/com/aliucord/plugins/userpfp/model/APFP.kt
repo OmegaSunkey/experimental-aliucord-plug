@@ -44,8 +44,7 @@ object APFP : AbstractDatabase() {
                 } else {
                 	UserPFP.log.debug(regex + " this may have the problem");
                     val matcher = Pattern.compile(
-                        id.toString() + regex,
-                        Pattern.DOTALL
+                        id.toString() + regex
                     ).matcher(data)
                     if (matcher.find()) {
                     	UserPFP.log.debug(matcher.group(1).toString() + " group 1");
