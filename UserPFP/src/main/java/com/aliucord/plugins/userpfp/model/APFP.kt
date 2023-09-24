@@ -16,7 +16,7 @@ import com.aliucord.plugins.userpfp.UserPFP
 
 
 object APFP : AbstractDatabase() {
-    override val regex: String = "\"\\]\\).*?(https:\\/\\/[\\w.\\/-]*)" //.*(https:\\/\\/.*?\\.gif).*(https:\\/\\/.*?\\.png|jpg)
+    override val regex: String = ".\\]\\).*?(https:\\/\\/[\\w.\\/-]*)" //.*(https:\\/\\/.*?\\.gif).*(https:\\/\\/.*?\\.png|jpg)
     override val url: String = "https://raw.githubusercontent.com/Yeetov/USRPFP-Reborn/main/db/dist.css" //https://raw.githubusercontent.com/OmegaSunkey/UserPFP-Discord/main/UserPFP.txt
 
     override var data: String = ""
@@ -42,6 +42,7 @@ object APFP : AbstractDatabase() {
                 if (mapCache.containsKey(id))
                     it.result = mapCache[id]?.let { it1 ->  it1.animated
                 } else {
+                	UserPFP.log.debug(regex + " this may have the problem");
                     val matcher = Pattern.compile(
                         id.toString() + regex,
                         Pattern.DOTALL
