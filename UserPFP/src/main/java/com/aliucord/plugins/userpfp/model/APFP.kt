@@ -12,6 +12,7 @@ import com.facebook.drawee.view.SimpleDraweeView
 import java.util.regex.Pattern
 import b.f.g.e.s
 import com.discord.utilities.images.MGImages
+import com.aliucord.plugins.userpfp.UserPFP
 
 
 object APFP : AbstractDatabase() {
