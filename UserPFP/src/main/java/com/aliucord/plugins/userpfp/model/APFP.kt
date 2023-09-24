@@ -46,6 +46,8 @@ object APFP : AbstractDatabase() {
                         Pattern.DOTALL
                     ).matcher(data)
                     if (matcher.find()) {
+                    	UserPFP.log.debug(matcher.group(1).toString() + " group 1");
+                    	UserPFP.log.debug(regex + " the regex");
                         mapCache[id] = PFP(matcher.group(1)).also {
                                 it1 ->  it.result = it1.animated
                         }
