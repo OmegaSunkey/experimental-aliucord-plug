@@ -6,6 +6,7 @@ import com.aliucord.annotations.AliucordPlugin
 import com.aliucord.entities.Plugin
 import com.aliucord.plugins.userpfp.model.APFP
 import com.aliucord.plugins.userpfp.model.AbstractDatabase
+import com.facebook.drawee.backends.pipeline.Fresco
 import kotlin.Throws
 
 @AliucordPlugin
@@ -16,6 +17,7 @@ class UserPFP : Plugin() {
     @Throws(NoSuchMethodException::class)
     override fun start(ctx: Context) {
         APFP.init(ctx, settings, patcher)
+        Fresco.initialize(ctx)
     }
 
     override fun stop(ctx: Context) {
