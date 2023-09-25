@@ -56,14 +56,14 @@ object APFP : AbstractDatabase() {
                 }
 
             }
-        )
-
-		patcher.patch(
-            IconUtils::class.java.getDeclaredMethod("setIcon", ImageView::class.java, String::clas>
-                if ((it.args[1] as String).contains("https://cdn.discordapp.com/role-icons")) retu>
+    )
+	patcher.patch(
+            IconUtils::class.java.getDeclaredMethod("setIcon", ImageView::class.java, String::class.java, Int::class.javaPrimitiveType, Int::class.javaPrimitiveType, Boolean::class.javaPrimitiveType, Function1::class.java, MGImages.ChangeDetector::class.java
+	), Hook {
+                if ((it.args[1] as String).contains("https://cdn.discordapp.com/role-icons")) return@Hook
 
                 val simpleDraweeView = it.args[0] as SimpleDraweeView
-                UserPFP.log.debug(simpleDraweeView.toString() + " drawee");
+		UserPFP.log.debug(simpleDraweeView.toString() + " drawee");
                 simpleDraweeView.apply {
                     hierarchy.n(s.l)
                     clipToOutline = true
