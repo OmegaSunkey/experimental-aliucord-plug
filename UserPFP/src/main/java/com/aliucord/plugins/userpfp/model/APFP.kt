@@ -57,6 +57,20 @@ object APFP : AbstractDatabase() {
 
             }
         )
+
+		patcher.patch(
+            IconUtils::class.java.getDeclaredMethod("setIcon", ImageView::class.java, String::clas>
+                if ((it.args[1] as String).contains("https://cdn.discordapp.com/role-icons")) retu>
+
+                val simpleDraweeView = it.args[0] as SimpleDraweeView
+                UserPFP.log.debug(simpleDraweeView.toString() + " drawee");
+                simpleDraweeView.apply {
+                    hierarchy.n(s.l)
+                    clipToOutline = true
+                    background =
+                        ShapeDrawable(OvalShape()).apply { paint.color = Color.TRANSPARENT }
+                }
+            })
     }
 
     data class PFP(val animated: String)
