@@ -58,7 +58,15 @@ object APFP : AbstractDatabase() {
             }
     )
 	patcher.patch(
-            IconUtils::class.java.getDeclaredMethod("setIcon", ImageView::class.java, String::class.java, Int::class.javaPrimitiveType, Int::class.javaPrimitiveType, Boolean::class.javaPrimitiveType, Function1::class.java, MGImages.ChangeDetector::class.java
+            IconUtils::class.java.getDeclaredMethod(
+            "setIcon", 
+            ImageView::class.java, 
+            String::class.java, 
+            Int::class.javaPrimitiveType, 
+            Int::class.javaPrimitiveType, 
+            Boolean::class.javaPrimitiveType, 
+            Function1::class.java, 
+            MGImages.ChangeDetector::class.java
 	), Hook {
                 if ((it.args[1] as String).contains("https://cdn.discordapp.com/role-icons")) return@Hook
 
