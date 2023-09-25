@@ -6,7 +6,7 @@ import com.aliucord.annotations.AliucordPlugin
 import com.aliucord.entities.Plugin
 import com.aliucord.plugins.userpfp.model.APFP
 import com.aliucord.plugins.userpfp.model.AbstractDatabase
-import com.facebook.drawee.backends.pipeline.Fresco
+import com.facebook.drawee.backends.pipeline.*
 import kotlin.Throws
 
 @AliucordPlugin

@@ -8,7 +8,7 @@ import com.aliucord.api.PatcherAPI
 import com.aliucord.api.SettingsAPI
 import com.aliucord.patcher.Hook
 import com.discord.utilities.icon.IconUtils
-import com.facebook.drawee.backends.pipeline.Fresco
+import com.facebook.drawee.backends.pipeline.*
 import com.facebook.drawee.view.*
 import com.facebook.drawee.controller.* //abstract builder
 import com.facebook.drawee.interfaces.DraweeController //to set gif autoplay false
