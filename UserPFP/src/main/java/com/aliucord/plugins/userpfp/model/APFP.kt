@@ -8,7 +8,9 @@ import com.aliucord.api.PatcherAPI
 import com.aliucord.api.SettingsAPI
 import com.aliucord.patcher.Hook
 import com.discord.utilities.icon.IconUtils
-import com.facebook.drawee.view.SimpleDraweeView
+import com.facebook.drawee.view.*
+import com.facebook.drawee.controller.* //abstract builder
+import com.facebook.drawee.interfaces.DraweeController //to set gif autoplay false
 import java.util.regex.Pattern
 import b.f.g.e.s
 import com.discord.utilities.images.MGImages
@@ -71,13 +73,16 @@ object APFP : AbstractDatabase() {
                 if ((it.args[1] as String).contains("https://cdn.discordapp.com/role-icons")) return@Hook
 
                 val simpleDraweeView = it.args[0] as SimpleDraweeView
-		UserPFP.log.debug(simpleDraweeView.toString() + " drawee");
+                val controller = AbstractDraweeControllerBuilder().setAutoPlayAnimations(false).build();
+                simpleDraweeView.setController(controller);
                 simpleDraweeView.apply {
                     hierarchy.n(s.l)
                     clipToOutline = true
                     background =
                         ShapeDrawable(OvalShape()).apply { paint.color = Color.TRANSPARENT }
                 }
+                UserPFP.log.debug(simpleDraweeView.toString() + " drawee");
+
             })
     }
 
