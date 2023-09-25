@@ -8,6 +8,7 @@ import com.aliucord.api.PatcherAPI
 import com.aliucord.api.SettingsAPI
 import com.aliucord.patcher.Hook
 import com.discord.utilities.icon.IconUtils
+import com.facebook.drawee.backends.pipeline.Fresco
 import com.facebook.drawee.view.*
 import com.facebook.drawee.controller.* //abstract builder
 import com.facebook.drawee.interfaces.DraweeController //to set gif autoplay false
@@ -73,7 +74,7 @@ object APFP : AbstractDatabase() {
                 if ((it.args[1] as String).contains("https://cdn.discordapp.com/role-icons")) return@Hook
 
                 val simpleDraweeView = it.args[0] as SimpleDraweeView
-                val controller = AbstractDraweeControllerBuilder().setAutoPlayAnimations(false).build();
+                val controller = Fresco.newDraweeControllerBuilder.setAutoPlayAnimations(false).build();
                 simpleDraweeView.setController(controller);
                 simpleDraweeView.apply {
                     hierarchy.n(s.l)
