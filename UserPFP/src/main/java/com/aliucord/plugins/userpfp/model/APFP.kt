@@ -8,12 +8,13 @@ import com.aliucord.api.PatcherAPI
 import com.aliucord.api.SettingsAPI
 import com.aliucord.patcher.Hook
 import com.discord.utilities.icon.IconUtils
-//import com.facebook.drawee.backends.pipeline.*
+import com.facebook.drawee.backends.pipeline.*
 import com.facebook.drawee.view.*
-//import com.facebook.drawee.controller.* //abstract builder
-//import com.facebook.drawee.interfaces.DraweeController //to set gif autoplay false
+import com.facebook.drawee.controller.* //abstract builder
+import com.facebook.drawee.interfaces.DraweeController //to set gif autoplay false
 import java.util.regex.Pattern
 import b.f.g.e.s
+import b.f.g.a.a.b
 import com.discord.utilities.images.MGImages
 import com.aliucord.plugins.userpfp.UserPFP
 
@@ -42,7 +43,7 @@ object APFP : AbstractDatabase() {
                         true
                     )) return@Hook
                 val id = it.args[0] as Long
-                it.args[3] = false
+                //it.args[3] = false
                 if (mapCache.containsKey(id))
                     it.result = mapCache[id]?.let { it1 ->  it1.animated
                 } else {
@@ -75,8 +76,8 @@ object APFP : AbstractDatabase() {
                 if ((it.args[1] as String).contains("https://cdn.discordapp.com/role-icons")) return@Hook
 
                 val simpleDraweeView = it.args[0] as SimpleDraweeView
-                //val controller = Fresco.newDraweeControllerBuilder.setAutoPlayAnimations(false).build();
-                //simpleDraweeView.setController(controller);
+                val controller = b.newDraweeControllerBuilder.setAutoPlayAnimations(false).build();
+                simpleDraweeView.setController(controller);
                 simpleDraweeView.apply {
                     hierarchy.n(s.l)
                     clipToOutline = true
