@@ -91,7 +91,7 @@ object APFP : AbstractDatabase() {
                         ShapeDrawable(OvalShape()).apply { paint.color = Color.TRANSPARENT }
                 }
                 UserPFP.log.debug(simpleDraweeView.getController().toString() + " drawee controller");
-                UserPFP.log.debug(b.a().toString + " Fresco hell")
+                UserPFP.log.debug(b.a().toString() + " Fresco hell")
 
             })
     }
