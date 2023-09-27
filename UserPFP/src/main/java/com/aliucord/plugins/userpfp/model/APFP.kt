@@ -86,11 +86,12 @@ object APFP : AbstractDatabase() {
                 simpleDraweeView.apply {
                     hierarchy.n(s.l)
                     clipToOutline = true
-                    forceStaticImage = true
+                    //forceStaticImage = true
                     background =
                         ShapeDrawable(OvalShape()).apply { paint.color = Color.TRANSPARENT }
                 }
                 UserPFP.log.debug(simpleDraweeView.getController().toString() + " drawee controller");
+                UserPFP.log.debug(b.a().toString + " Fresco hell")
 
             })
     }
