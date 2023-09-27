@@ -78,7 +78,9 @@ object APFP : AbstractDatabase() {
 
                 val simpleDraweeView = it.args[0] as SimpleDraweeView
                 val a: d = b.a();
-                val h: AbstractDraweeController = a.a();
+                //a.m = true;
+                //val h: AbstractDraweeController = a.a();
+                val h = a.newDraweeControllerBuilder().setAutoPlayGifs(false).build();
                 simpleDraweeView.setController(h);
                 simpleDraweeView.apply {
                     hierarchy.n(s.l)
