@@ -11,11 +11,11 @@ import com.discord.utilities.icon.IconUtils
 import com.facebook.drawee.backends.pipeline.*
 import com.facebook.drawee.view.*
 import com.facebook.drawee.controller.* //abstract builder
-import com.facebook.drawee.interfaces.DraweeController //to set gif autoplay false
+import com.facebook.drawee.interfaces.DraweeController
 import java.util.regex.Pattern
 import b.f.g.e.s
-import b.f.g.a.a.b
-import b.f.g.a.a.d
+import b.f.g.a.a.b //Fresco.java
+import b.f.g.a.a.d //PipelineDraweeControllerBuilder.java
 import com.discord.utilities.images.MGImages
 import com.aliucord.plugins.userpfp.UserPFP
 
@@ -78,10 +78,11 @@ object APFP : AbstractDatabase() {
 
                 val simpleDraweeView = it.args[0] as SimpleDraweeView
                 val a: d = b.a();
-                //a.m = true;
+                a.m = true;
+                a.n = simpleDraweeView.getController();
                 //val h: AbstractDraweeController = a.a();
-                val h = a.newDraweeControllerBuilder().setAutoPlayGifs(false).build();
-                simpleDraweeView.setController(h);
+                //val h = a.newDraweeControllerBuilder().setAutoPlayGifs(false).build();
+                simpleDraweeView.setController(a.a());
                 simpleDraweeView.apply {
                     hierarchy.n(s.l)
                     clipToOutline = true
