@@ -86,6 +86,7 @@ object APFP : AbstractDatabase() {
                 simpleDraweeView.apply {
                     hierarchy.n(s.l)
                     clipToOutline = true
+                    forceStaticImage = true
                     background =
                         ShapeDrawable(OvalShape()).apply { paint.color = Color.TRANSPARENT }
                 }
