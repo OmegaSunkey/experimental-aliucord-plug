@@ -15,6 +15,7 @@ import com.facebook.drawee.interfaces.DraweeController //to set gif autoplay fal
 import java.util.regex.Pattern
 import b.f.g.e.s
 import b.f.g.a.a.b
+import b.f.g.a.a.d
 import com.discord.utilities.images.MGImages
 import com.aliucord.plugins.userpfp.UserPFP
 
@@ -76,8 +77,9 @@ object APFP : AbstractDatabase() {
                 if ((it.args[1] as String).contains("https://cdn.discordapp.com/role-icons")) return@Hook
 
                 val simpleDraweeView = it.args[0] as SimpleDraweeView
-                val controller = b.newDraweeControllerBuilder.setAutoPlayAnimations(false).build();
-                simpleDraweeView.setController(controller);
+                val a: d = b.a();
+                val h: AbstractDraweeController = a.a();
+                simpleDraweeView.setController(h);
                 simpleDraweeView.apply {
                     hierarchy.n(s.l)
                     clipToOutline = true
