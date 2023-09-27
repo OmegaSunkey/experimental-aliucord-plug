@@ -77,19 +77,19 @@ object APFP : AbstractDatabase() {
                 if ((it.args[1] as String).contains("https://cdn.discordapp.com/role-icons")) return@Hook
 
                 val simpleDraweeView = it.args[0] as SimpleDraweeView
-                val a: d = b.a();
-                a.m = true;
-                a.n = simpleDraweeView.getController();
-                //val h: AbstractDraweeController = a.a();
+                //val a: d = b.a(); 
+                //a.m = true;
+                //a.n = simpleDraweeView.getController();
+                //val h: AbstractDraweeController = a.a(); 
                 //val h = a.newDraweeControllerBuilder().setAutoPlayGifs(false).build();
-                simpleDraweeView.setController(a.a());
+                //simpleDraweeView.setController(a.a());
                 simpleDraweeView.apply {
                     hierarchy.n(s.l)
                     clipToOutline = true
                     background =
                         ShapeDrawable(OvalShape()).apply { paint.color = Color.TRANSPARENT }
                 }
-                UserPFP.log.debug(simpleDraweeView.toString() + " drawee");
+                UserPFP.log.debug(simpleDraweeView.getController().toString() + " drawee controller");
 
             })
     }
