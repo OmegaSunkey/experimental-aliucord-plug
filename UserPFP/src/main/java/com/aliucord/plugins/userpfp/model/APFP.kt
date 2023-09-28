@@ -43,12 +43,12 @@ object APFP : AbstractDatabase() {
                         "nitroBanner",
                         true
                     )) return@Hook
+                if ((it.args[3] as Boolean) = false) return@Hook
                 val id = it.args[0] as Long
-                //it.args[3] = false
                 if (mapCache.containsKey(id))
                     it.result = mapCache[id]?.let { it1 ->  it1.animated
                 } else {
-                	UserPFP.log.debug(regex + " this may have the problem");
+                	//UserPFP.log.debug(regex + " this may have the problem");
                     val matcher = Pattern.compile(
                         id.toString() + regex
                     ).matcher(data)
@@ -90,8 +90,8 @@ object APFP : AbstractDatabase() {
                     background =
                         ShapeDrawable(OvalShape()).apply { paint.color = Color.TRANSPARENT }
                 }
-                UserPFP.log.debug(simpleDraweeView.getController().toString() + " drawee controller");
-                UserPFP.log.debug(b.a().toString() + " Fresco hell")
+                //UserPFP.log.debug(simpleDraweeView.getController().toString() + " drawee controller");
+                //UserPFP.log.debug(b.a().toString() + " Fresco hell")
 
             })
     }
