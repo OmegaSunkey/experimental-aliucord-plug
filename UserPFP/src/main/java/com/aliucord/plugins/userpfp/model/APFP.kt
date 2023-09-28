@@ -43,7 +43,7 @@ object APFP : AbstractDatabase() {
                         "nitroBanner",
                         true
                     )) return@Hook
-                if ((it.args[3] as Boolean) = false) return@Hook
+                if ((it.args[3] as Boolean) == false) return@Hook
                 val id = it.args[0] as Long
                 if (mapCache.containsKey(id))
                     it.result = mapCache[id]?.let { it1 ->  it1.animated
