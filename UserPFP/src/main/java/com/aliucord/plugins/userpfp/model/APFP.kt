@@ -10,14 +10,9 @@ import com.aliucord.PluginManager
 import com.aliucord.api.SettingsAPI
 import com.aliucord.patcher.Hook
 import com.discord.utilities.icon.IconUtils
-import com.facebook.drawee.backends.pipeline.*
 import com.facebook.drawee.view.*
-import com.facebook.drawee.controller.* //abstract builder
-import com.facebook.drawee.interfaces.DraweeController
 import java.util.regex.Pattern
 import b.f.g.e.s
-import b.f.g.a.a.b //Fresco.java
-import b.f.g.a.a.d //PipelineDraweeControllerBuilder.java
 import com.discord.utilities.images.MGImages
 import com.aliucord.plugins.userpfp.UserPFP
 
@@ -30,6 +25,7 @@ object APFP : AbstractDatabase() {
 
     override val mapCache: MutableMap<Long, PFP> = HashMap()
     override val name: String = "APFP"
+    val RoundValue = PluginManager.plugins.get("SquareAvatars").settings
 
     override fun runPatches(patcher: PatcherAPI, settings: SettingsAPI) {
         patcher.patch(
@@ -95,7 +91,7 @@ object APFP : AbstractDatabase() {
                         	ShapeDrawable(OvalShape()).apply { paint.color = Color.TRANSPARENT }
                         //}
                 }
-                UserPFP.log.debug(PluginManager.getPluginPrefKey("SquareAvatars") + " getPluginPrefKey");
+                UserPFP.log.debug(RoundValue.toString() + " SquareAvatars settings");
                 //UserPFP.log.debug(b.a().toString() + " Fresco hell")
 
             })
