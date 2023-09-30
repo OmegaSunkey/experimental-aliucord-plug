@@ -83,7 +83,6 @@ object APFP : AbstractDatabase() {
                         	ShapeDrawable(OvalShape()).apply { paint.color = Color.TRANSPARENT }
                         }
                 }
-                UserPFP.log.debug(RoundValue.toString() + " SquareAvatars settings")
 
             })
     }
