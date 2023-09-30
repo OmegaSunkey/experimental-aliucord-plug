@@ -3,8 +3,10 @@ package com.aliucord.plugins.userpfp.model
 import android.graphics.Color
 import android.graphics.drawable.ShapeDrawable
 import android.graphics.drawable.shapes.OvalShape
+import android.graphics.drawable.shapes.RoundRectShape
 import android.widget.ImageView
 import com.aliucord.api.PatcherAPI
+import com.aliucord.PluginManager
 import com.aliucord.api.SettingsAPI
 import com.aliucord.patcher.Hook
 import com.discord.utilities.icon.IconUtils
@@ -63,17 +65,17 @@ object APFP : AbstractDatabase() {
 
             }
     )
-	patcher.patch(
+		patcher.patch(
             IconUtils::class.java.getDeclaredMethod(
-            "setIcon", 
-            ImageView::class.java, 
-            String::class.java, 
-            Int::class.javaPrimitiveType, 
-            Int::class.javaPrimitiveType, 
-            Boolean::class.javaPrimitiveType, 
-            Function1::class.java, 
-            MGImages.ChangeDetector::class.java
-	), Hook {
+            	"setIcon", 
+            	ImageView::class.java, 
+            	String::class.java, 
+            	Int::class.javaPrimitiveType, 
+            	Int::class.javaPrimitiveType, 
+            	Boolean::class.javaPrimitiveType, 
+            	Function1::class.java, 
+            	MGImages.ChangeDetector::class.java
+		), Hook {
                 if ((it.args[1] as String).contains("https://cdn.discordapp.com/role-icons")) return@Hook
 
                 val simpleDraweeView = it.args[0] as SimpleDraweeView
@@ -87,14 +89,21 @@ object APFP : AbstractDatabase() {
                     hierarchy.n(s.l)
                     clipToOutline = true
                     //forceStaticImage = true
-                    background =
-                        ShapeDrawable(OvalShape()).apply { paint.color = Color.TRANSPARENT }
+                    background = /*if(PluginManager.isEnabled("SquareAvatars")) {
+                    		ShapeDrawable(RoundRectShape(GetRoundRect())).apply { paint.color = Color.TRANSPARENT }
+                        } else {*/
+                        	ShapeDrawable(OvalShape()).apply { paint.color = Color.TRANSPARENT }
+                        //}
                 }
-                //UserPFP.log.debug(simpleDraweeView.getController().toString() + " drawee controller");
+                UserPFP.log.debug(PluginManager.getPluginPrefKey("SquareAvatars") + " getPluginPrefKey");
                 //UserPFP.log.debug(b.a().toString() + " Fresco hell")
 
             })
     }
+
+	/*fun GetRoundRect(): Int {
+		return PluginManager.getPluginPrefKey("SquareAvatars")
+	}*/
 
     data class PFP(val animated: String)
 }
