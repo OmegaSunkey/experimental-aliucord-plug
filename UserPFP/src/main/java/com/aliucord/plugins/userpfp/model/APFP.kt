@@ -26,7 +26,7 @@ object APFP : AbstractDatabase() {
     override val mapCache: MutableMap<Long, PFP> = HashMap()
     override val name: String = "APFP"
     val RoundValue = PluginManager.plugins.get("SquareAvatars")?.settings?.getInt("roundCorners", 3)
-    val FloatValue = FloatArray(8) {index -> RoundValue.toFloat()}
+    val FloatValue = FloatArray(8) {index -> RoundValue?.toFloat()}
 
     override fun runPatches(patcher: PatcherAPI, settings: SettingsAPI) {
         patcher.patch(
