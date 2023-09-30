@@ -25,8 +25,6 @@ object APFP : AbstractDatabase() {
 
     override val mapCache: MutableMap<Long, PFP> = HashMap()
     override val name: String = "APFP"
-    val RoundValue = PluginManager.plugins.get("SquareAvatars")?.settings?.getInt("roundCorners", 3)
-    val FloatValue = FloatArray(8) {index -> RoundValue?.toFloat()}
 
     override fun runPatches(patcher: PatcherAPI, settings: SettingsAPI) {
         patcher.patch(
@@ -80,7 +78,7 @@ object APFP : AbstractDatabase() {
                     hierarchy.n(s.l)
                     clipToOutline = true
                     background = if(PluginManager.isPluginEnabled("SquareAvatars")) {
-                    		ShapeDrawable(RoundRectShape(FloatValue, null, null)).apply { paint.color = Color.TRANSPARENT }
+                    		ShapeDrawable(RoundRectShape(RoundF(), null, null)).apply { paint.color = Color.TRANSPARENT }
                         } else {
                         	ShapeDrawable(OvalShape()).apply { paint.color = Color.TRANSPARENT }
                         }
@@ -88,6 +86,12 @@ object APFP : AbstractDatabase() {
                 UserPFP.log.debug(RoundValue.toString() + " SquareAvatars settings")
 
             })
+    }
+
+    fun RoundF(): FloatArray {
+    	val RoundValue = PluginManager.plugins.get("SquareAvatars")!!.settings!!.getInt("roundCorners", 3)
+	    val FloatValue = FloatArray(8) {index -> RoundValue!!.toFloat()}
+	    return FloatValue
     }
 
     data class PFP(val animated: String)
