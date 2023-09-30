@@ -25,7 +25,7 @@ object APFP : AbstractDatabase() {
 
     override val mapCache: MutableMap<Long, PFP> = HashMap()
     override val name: String = "APFP"
-    val RoundValue = PluginManager.plugins?.get("SquareAvatars").settings
+    val RoundValue = PluginManager.plugins.get("SquareAvatars")?.settings
 
     override fun runPatches(patcher: PatcherAPI, settings: SettingsAPI) {
         patcher.patch(
