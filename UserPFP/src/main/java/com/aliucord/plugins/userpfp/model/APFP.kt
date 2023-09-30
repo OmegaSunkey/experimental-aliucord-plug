@@ -80,7 +80,7 @@ object APFP : AbstractDatabase() {
                     hierarchy.n(s.l)
                     clipToOutline = true
                     background = if(PluginManager.isEnabled("SquareAvatars")) {
-                    		ShapeDrawable(RoundRectShape(FloatValue)).apply { paint.color = Color.TRANSPARENT }
+                    		ShapeDrawable(RoundRectShape(FloatValue, null)).apply { paint.color = Color.TRANSPARENT }
                         } else {
                         	ShapeDrawable(OvalShape()).apply { paint.color = Color.TRANSPARENT }
                         }
