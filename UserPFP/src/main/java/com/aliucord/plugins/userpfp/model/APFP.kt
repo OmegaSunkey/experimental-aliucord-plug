@@ -25,7 +25,8 @@ object APFP : AbstractDatabase() {
 
     override val mapCache: MutableMap<Long, PFP> = HashMap()
     override val name: String = "APFP"
-    val RoundValue = PluginManager.plugins.get("SquareAvatars")?.settings.getInt("roundCorners", 3)
+    val RoundValue = PluginManager.plugins.get("SquareAvatars")?.settings?.getInt("roundCorners", 3)
+    val FloatValue = FloatArray(8) {index -> RoundValue}
 
     override fun runPatches(patcher: PatcherAPI, settings: SettingsAPI) {
         patcher.patch(
@@ -79,7 +80,7 @@ object APFP : AbstractDatabase() {
                     hierarchy.n(s.l)
                     clipToOutline = true
                     background = if(PluginManager.isEnabled("SquareAvatars")) {
-                    		ShapeDrawable(RoundRectShape(RoundValue).apply { paint.color = Color.TRANSPARENT }
+                    		ShapeDrawable(RoundRectShape(FloatValue)).apply { paint.color = Color.TRANSPARENT }
                         } else {
                         	ShapeDrawable(OvalShape()).apply { paint.color = Color.TRANSPARENT }
                         }
