@@ -25,7 +25,7 @@ object APFP : AbstractDatabase() {
 
     override val mapCache: MutableMap<Long, PFP> = HashMap()
     override val name: String = "APFP"
-    val RoundValue = PluginManager.plugins.get("SquareAvatars")?.settings
+    val RoundValue = PluginManager.plugins.get("SquareAvatars")?.settings.getInt("roundCorners", 3)
 
     override fun runPatches(patcher: PatcherAPI, settings: SettingsAPI) {
         patcher.patch(
@@ -75,31 +75,19 @@ object APFP : AbstractDatabase() {
                 if ((it.args[1] as String).contains("https://cdn.discordapp.com/role-icons")) return@Hook
 
                 val simpleDraweeView = it.args[0] as SimpleDraweeView
-                //val a: d = b.a(); 
-                //a.m = true;
-                //a.n = simpleDraweeView.getController();
-                //val h: AbstractDraweeController = a.a(); 
-                //val h = a.newDraweeControllerBuilder().setAutoPlayGifs(false).build();
-                //simpleDraweeView.setController(a.a());
                 simpleDraweeView.apply {
                     hierarchy.n(s.l)
                     clipToOutline = true
-                    //forceStaticImage = true
-                    background = /*if(PluginManager.isEnabled("SquareAvatars")) {
-                    		ShapeDrawable(RoundRectShape(GetRoundRect())).apply { paint.color = Color.TRANSPARENT }
-                        } else {*/
+                    background = if(PluginManager.isEnabled("SquareAvatars")) {
+                    		ShapeDrawable(RoundRectShape(RoundValue).apply { paint.color = Color.TRANSPARENT }
+                        } else {
                         	ShapeDrawable(OvalShape()).apply { paint.color = Color.TRANSPARENT }
-                        //}
+                        }
                 }
-                UserPFP.log.debug(RoundValue.toString() + " SquareAvatars settings");
-                //UserPFP.log.debug(b.a().toString() + " Fresco hell")
+                UserPFP.log.debug(RoundValue.toString() + " SquareAvatars settings")
 
             })
     }
-
-	/*fun GetRoundRect(): Int {
-		return PluginManager.getPluginPrefKey("SquareAvatars")
-	}*/
 
     data class PFP(val animated: String)
 }
